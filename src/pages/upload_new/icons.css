@@ -1,0 +1,101 @@
+  
+  .container{
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    background-color: rgb(243, 240, 240);
+
+  }
+  .top{
+    display: flex;
+    flex-direction: row;
+  }
+  .buttom{
+    display: flex;
+    flex-direction:column;
+    justify-content: space-around;
+    /* justify-items:end; */
+  }
+  .buttom_top{
+    display: flex;
+    flex-direction: row;
+  }
+  .bottom_bottom{
+    display: flex;
+    flex-direction: row;
+  }
+  .inputs{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+  }
+  .Course_Banner_Container{display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    height: 450px;
+    margin: 5px;
+    background-color: rgb(255, 255, 255);
+
+    border-radius: 10px;
+    position: relative;}
+  
+  .Course_Banner_Top {
+    
+    width: 350px;
+    height: 250px;
+   
+    background-color: rgb(200, 123, 202);
+    border-radius: 10px;
+    position: relative
+}
+.course_banner_span{
+  background-color: rgb(64, 5, 173);
+  color: white;
+  font-weight:bold;
+  padding:10px ;
+  border-radius: 10px;
+}
+.Course_Banner_Bottom{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  
+}
+.Course_Banner:hover {
+  background-color: rgb(131, 127, 127);
+      transform: scale(1.03);
+      box-shadow: 0 13px 40px -5px hsla(240, 30.1%, 28%, 0.12), 0 8px 32px -8px hsla(0, 0%, 0%, 0.14), 0 -6px 32px -6px hsla(0, 0%, 0%, 0.02);
+    }
+    /* @Course_Banner ( max.width:550px) {
+  .Course_Banner { width:46%; }
+    } */
+    .Course_Descriptions textarea{
+     border-radius: 15px;
+    height: 250px; 
+    width: 200px;
+    margin: 6px;
+      
+      
+    }
+    .banner_span{
+      font-weight:bold;
+        display: flex;
+        justify-content: center;
+      align-items: center;
+      }
+
+   .Course_Banner_Bottom_span1{   color: rgb(21, 7, 211);
+  font-weight:bold;
+  padding:10px ;}
+  .Course_Banner_Bottom_span2{   color: rgb(187, 173, 173);
+    font-weight:bold;
+    padding:10px ;}
+    .send_button{
+      background-color: rgb(27, 7, 139);
+      color: rgb(240, 240, 240);
+      font-weight:bold;
+
+    }
+
+    

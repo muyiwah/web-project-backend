@@ -1,0 +1,6 @@
+
+.Buttom{
+  display: flex;
+  justify-content:space-evenly; 
+  padding: 1px;
+} 
