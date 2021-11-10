@@ -8,19 +8,9 @@ import { DataGrid } from '@mui/x-data-grid';
 import MaterialTable from "material-table";
 import {collection, addDoc, query, onSnapshot, deleteDoc,doc ,setDoc} from "firebase/firestore";
  import {db, storage} from "../../firebase";
+import { Autorenew } from '@material-ui/icons';
 
-// import {
-//   useGridApiRef,
-//   DataGridPro,
-//   GridToolbarContainer,
-//   GridActionsCellItem,
-// } from '@mui/x-data-grid'
-// import Button from '@material-ui/icons';
-// import AddIcon from '@material-ui/icons';
-// import EditIcon from '@material-ui/icons';
-// import DeleteIcon from '@material-ui/icons';
-// import SaveIcon from '@material-ui/icons';
-// import CancelIcon from '@material-ui/icons';
+
 
 const useStyles = makeStyles(theme => ({
   tableOverflow: {
@@ -50,22 +40,28 @@ const Maps = () => {
   var priceFb =""; 
   var cByAuthor="";
   
-  
+  // if(post2) {var post3=post2[1]}
   
   const columns = [
     // {field: 'id', headerName: 'ID'},
     // {field: 'name', headerName: 'Name', width: 350},
+  
     { field: 'date', title: ' Date Uploaded', emptyValue:()=><em>Null</em> },
     { field: 'authorName', title: 'Author',emptyValue:()=><em>Null</em>  },
     { field: 'courseTitle', title: 'Course Title',emptyValue:()=><em>Null</em>  },
     { field: 'price', title: 'Cost',emptyValue:()=><em>Null</em>  },
     { field: 'authorCoursesFb', title: 'Courses by Author',emptyValue:()=><em>Null</em>  },
-    { field: 'courseDesc', title: 'Description',emptyValue:()=><em>Null</em>  },
+    { field: 'courseDesc', title: 'Description',editable:true, cellStyle: {textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden ", color:"blue" }   },
     { field: 'categoryFb', title: 'Category' ,emptyValue:()=><em>Null</em> },
     { field: 'courseFeatureFb', title: 'Course Feature',emptyValue:()=><em>Null</em>  },
-    { field: 'overviewFb', title: 'Overview' ,emptyValue:()=><em>Null</em> },
+    // { field: 'overviewFb', title: 'Overview' ,emptyValue:()=><em>Null</em> },
     { field: 'curriculumFb', title: 'Curriculum',emptyValue:()=><em>Null</em>  },
-    { field: 'learningOutcomeFb', title: 'Learning Outcome',emptyValue:()=><em>Null</em>  }
+    { field: 'learningOutcomeFb', title: 'Learning Outcome',emptyValue:()=><em>Null</em>  },
+    {
+      title: "Banner",
+      field: "imageUrl",
+      render: (rowData) => <img src={ rowData.imgUrl} style={{ width: 100 }} />,
+  }
   ]
 
 
@@ -94,7 +90,7 @@ alert("done")
     authorImg: `${authorImgFb}`,
     authorName: `${authorNameFb}`,
     courseDesc: `${description}`,
-    courseLink: `${courseLinkFb}`,
+    courseLink: `${title}`,
     courseTitle: `${title}`,
     imgUrl: `${imgUrlFb}`,
     price: `${cost}`,
@@ -139,20 +135,19 @@ alert("done")
   const classes = useStyles();
   return (<div>
     <div>
-      <MaterialTable data={data2} columns={columns}
+      <MaterialTable data={data2} columns={columns} 
 editable ={{
   onRowUpdate:(selectedRow)=>new Promise((resolve,reject)=>{
     // console.log(selectedRow);
-   updateValue= selectedRow; var update =selectedRow.id; console.log("id is",update)
+   updateValue= selectedRow; var update =selectedRow.id; 
    description=selectedRow.courseDesc;
    title=selectedRow.courseTitle;
-   cost=selectedRow.price;console.log(cost);
-   overview=selectedRow.overviewFb;console.log(overview);
-   curriculum=selectedRow.curriculumFb;console.log(curriculum);
+   cost=selectedRow.price;
+   overview=selectedRow.overviewFb;
+   curriculum=selectedRow.curriculumFb;
    category=selectedRow.categoryFb;
-   learningOutcome=selectedRow.learningOutcomeFb;console.log(learningOutcome);
-   courseFeature=selectedRow.courseFeatureFb;console.log(courseFeature);
-    authorNameFb=selectedRow.authorName;
+   learningOutcome=selectedRow.learningOutcomeFb;
+   courseFeature=selectedRow.courseFeatureFb;
     cByAuthor = selectedRow.authorCoursesFb;
     imgUrlFb = selectedRow.imgUrl;
           handleUpdate(update);
@@ -167,10 +162,12 @@ editable ={{
   })
 }
 }
-options={{
+options={{  
   actionsColumnIndex:-1,
+  // cellstyle:{textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden ", color:"blue"},
   headerStyle:{background:"yellow", fontSize:"12", fontWeight:"bold"},
-
+  tableStyle:{background:"yellow", fontSize:"44", fontWeight:"bold",color:"red"},
+  // cellstyle:{whiteSpace:'nowrap'}
 }}
         title="Uploaded Courses" />
 
@@ -180,5 +177,8 @@ options={{
   </div>
   );
 }
+
+
+  /* Required for text-overflow to do anything */
 
 export default Maps
