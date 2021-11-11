@@ -52,7 +52,7 @@ const Maps = () => {
     { field: 'courseTitle', title: 'Course Title',emptyValue:()=><em>Null</em>  },
     { field: 'price', title: 'Cost',emptyValue:()=><em>Null</em>  },
     { field: 'authorCoursesFb', title: 'Courses by Author',emptyValue:()=><em>Null</em>  },
-    { field: 'courseDesc', title: 'Description',editable:true, cellStyle: {textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden ", color:"blue" }   },
+    { field: 'courseDesc', title: 'Description', emptyValue:()=><em>Null</em> },
     { field: 'categoryFb', title: 'Category' ,emptyValue:()=><em>Null</em> },
     { field: 'courseFeatureFb', title: 'Course Feature',emptyValue:()=><em>Null</em>  },
     // { field: 'overviewFb', title: 'Overview' ,emptyValue:()=><em>Null</em> },
@@ -176,7 +176,7 @@ editable ={{
 }
 options={{  
   actionsColumnIndex:-1,
-  // cellstyle:{textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden ", color:"blue"},
+   cellstyle:{textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden ", color:"blue"},
   headerStyle:{background:"yellow", fontSize:"12", fontWeight:"bold"},
   tableStyle:{background:"yellow", fontSize:"44", fontWeight:"bold",color:"red"},
   // cellstyle:{whiteSpace:'nowrap'}
