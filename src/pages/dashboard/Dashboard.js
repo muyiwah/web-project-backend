@@ -1,47 +1,77 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+// import {
+//   Grid,
+//   LinearProgress,
+//   Select,
+//   OutlinedInput,
+//   MenuItem,
+//   Button
+// } from "@material-ui/core";
+// import { useTheme } from "@material-ui/styles";
 import {
-  Grid,
-  LinearProgress,
-  Select,
-  OutlinedInput,
-  MenuItem,
-  Button
-} from "@material-ui/core";
-import { useTheme } from "@material-ui/styles";
-import {
-  ResponsiveContainer,
-  ComposedChart,
-  AreaChart,
+  // ResponsiveContainer,
+  // ComposedChart,
+  // AreaChart,
   LineChart,
-  Line,
-  Area,
-  PieChart,
-  Pie,
-  Cell,
-  YAxis,
-  XAxis,
+  // Line,
+  // Area,
+  // PieChart,
+  // Pie,
+  // Cell,
+  // YAxis,
+  // XAxis,
 } from "recharts";
 import "./Main.css";
 // styles
-import useStyles from "./styles";
+// import useStyles from "./styles";
 
 // components
-import mock from "./mock";
-import Widget from "../../components/Widget";
-import PageTitle from "../../components/PageTitle";
-import { Typography } from "../../components/Wrappers";
-import Dot from "../../components/Sidebar/components/Dot";
-import Table from "./components/Table/Table";
-import BigStat from "./components/BigStat/BigStat";
+// import mock from "./mock";
+// import Widget from "../../components/Widget";
+// import PageTitle from "../../components/PageTitle";
+// import { Typography } from "../../components/Wrappers";
+// import Dot from "../../components/Sidebar/components/Dot";
+// import Table from "./components/Table/Table";
+// import BigStat from "./components/BigStat/BigStat";
+import {collection, query, onSnapshot} from "firebase/firestore";
+import {db} from "../../firebase";
+
 
 
 
 export default function Dashboard(props) {
-  var classes = useStyles();
-  var theme = useTheme();
+  // var classes = useStyles();
+  // var theme = useTheme();
 
   // local
-  var [mainChartState, setMainChartState] = useState("monthly");
+  // var [mainChartState, setMainChartState] = useState("monthly");
+  const [data2, setData2] = useState([])
+  useEffect(() => {
+    const q = query(collection(db, "courses6"));
+    const sub = onSnapshot(q, (querySnapshot) => {
+      var array = [];
+      querySnapshot.forEach((doc) => {
+        array.push({ ...doc.data(), id: doc.id });
+      }); setData2(array)
+    });
+    return () => {
+      sub();
+    }
+  }, []); 
+  const [data, setData] = useState([]) 
+  useEffect(() => {
+    const q = query(collection(db, "users"));
+    const sub = onSnapshot (q, (querySnapshot) =>{
+      var array = [];
+      querySnapshot.forEach((doc)=>{
+        array.push({...doc.data(), id: doc.id});
+      });setData(array);
+
+    });
+    return () => {
+     sub();
+    }
+  }, []);
 
   return (
     <main>
@@ -67,7 +97,7 @@ export default function Dashboard(props) {
           ></i>
           <div className="card_inner">
             <p className="text-primary-p">Number of Subscribers</p>
-            <span className="font-bold text-title">0</span>
+            <span className="font-bold text-title">{data && data.length}</span>
           </div>
         </div>
 
@@ -86,7 +116,7 @@ export default function Dashboard(props) {
           ></i>
           <div className="card_inner">
             <p className="text-primary-p">Number of Videos</p>
-            <span className="font-bold text-title">0</span>
+            <span className="font-bold text-title">{data2 && data2.length}</span>
           </div>
         </div>
 
@@ -138,7 +168,7 @@ export default function Dashboard(props) {
 
             <div className="card3">
               <h1>Users</h1>
-              <p>0</p>
+              <p> {data.length} </p>
             </div>
 
             <div className="card4">

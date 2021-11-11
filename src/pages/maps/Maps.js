@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react'
 // import {DataGrid} from '@material-ui/data-grid'
-import { Grid } from "@material-ui/core";
+// import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import Widget from "../../components/Widget/Widget";
-import Table from "../dashboard/components/Table/Table";
-import { DataGrid } from '@mui/x-data-grid';
+// import Widget from "../../components/Widget/Widget";
+// import Table from "../dashboard/components/Table/Table";
+// import { DataGrid } from '@mui/x-data-grid';
 import MaterialTable from "material-table";
-import {collection, addDoc, query, onSnapshot, deleteDoc,doc ,setDoc} from "firebase/firestore";
- import {db, storage} from "../../firebase";
-import { Autorenew } from '@material-ui/icons';
-
+import {collection,query, onSnapshot, deleteDoc,doc ,setDoc} from "firebase/firestore";
+ import {db} from "../../firebase";
+// import { Autorenew } from '@material-ui/icons';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const useStyles = makeStyles(theme => ({
@@ -19,25 +20,25 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Maps = () => {
-
-  var updateValue=";"
+  const notify = () => toast("Done");
+   var updateValue=";"
   var description="";
   var title ="";
   var cost = "";
   var overview = "";
   var curriculum = "";
-  var author = "";
+  // var author = "";
   var category = "";
   var learningOutcome = "";
   var courseFeature ="";
   // var authorCoursesFb  ="";
   var authorImgFb ="author.jpg";
   var authorNameFb ="";
-  var courseDescFb  ="";
-  var courseLinkFb  ="";
-  var courseTitleFb ="";
+  // var courseDescFb  ="";
+  // var courseLinkFb  ="";
+  // var courseTitleFb ="";
   var imgUrlFb ="";
-  var priceFb =""; 
+  // var priceFb =""; 
   var cByAuthor="";
   
   // if(post2) {var post3=post2[1]}
@@ -80,7 +81,7 @@ const handleDelete = async (del) =>{
     
    
   });
-alert("done")
+  notify();
   } 
   const handleUpdate = async (update, date,authorImg,authorName,courseDesc,courseLink,courseTitle,imgUrl,price,categoryFb,overviewFb,learningOutcomeFb, curriculumFb,  courseFeatureFb, descriptionFb,authorCoursesFb) =>{
 
@@ -131,9 +132,20 @@ alert("done")
     return () => {
       sub();
     }
-  }, []); console.log("from maps", data2);
+  }, []); 
   const classes = useStyles();
   return (<div>
+     <ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+/>
     <div>
       <MaterialTable data={data2} columns={columns} 
 editable ={{
@@ -156,7 +168,7 @@ editable ={{
   ),
   onRowDelete: (selectedRow)=>new Promise((resolve,reject)=>{
     var del = selectedRow.id;
-    console.log(selectedRow.date,selectedRow);
+   
     handleDelete(del);
     setTimeout(()=>resolve(),500)
   })

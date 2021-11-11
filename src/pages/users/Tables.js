@@ -53,7 +53,7 @@ export default function Tables() {
       var array = [];
       querySnapshot.forEach((doc)=>{
         array.push({...doc.data(), id: doc.id});
-      });setData(array);console.log("from take", data);
+      });setData(array);
 
     });
     return () => {

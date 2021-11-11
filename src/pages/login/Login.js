@@ -10,14 +10,14 @@ import {
   Fade,
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
-import classnames from "classnames";
+// import classnames from "classnames";
 
 // styles
 import useStyles from "./styles";
 
 // logo
 import logo from "./logo.svg";
-import google from "../../images/google.svg";
+// import google from "../../images/google.svg";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -57,7 +57,7 @@ function Login(props) {
         registerEmail,
         registerPassword
       );
-      console.log(user);
+     
     } catch (error) {
       console.log(error.message);
     }
@@ -71,7 +71,7 @@ function Login(props) {
         passwordValue
       );
       
-      console.log(user);
+      
     } catch (error) {
       console.log(error.message);
     }

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Drawer, IconButton, List } from "@material-ui/core";
 import {
   Home as HomeIcon,
-  NotificationsNone as NotificationsIcon,
-  ImportContacts as TypographyIcon,
+  // NotificationsNone as NotificationsIcon,
+  // ImportContacts as TypographyIcon,
   FilterNone as UIElementsIcon,
   People as TableIcon,
-  QuestionAnswer as SupportIcon,
+  // QuestionAnswer as SupportIcon,
   LibraryBooks as LibraryIcon,
-  HelpOutline as FAQIcon,
+  // HelpOutline as FAQIcon,
   ArrowBack as ArrowBackIcon,
 } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";

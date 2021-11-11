@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import icons from './icons.css'
+// import icons from './icons.css'
 // import fireDb from './firebase'
 // import { collection, addDoc } from "./firebase/firestore"; 
 import {collection, addDoc, query, onSnapshot} from "firebase/firestore";
-import {db, storage} from "./firebase";
-import Maps from '../maps/Maps';
+import {db} from "./firebase";
+// import Maps from '../maps/Maps';
 
 // import TextField from '@mui/material/TextField';
 // import Box from '@mui/material/Box';

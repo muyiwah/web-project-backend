@@ -6,8 +6,8 @@ import {
   withRouter,
 } from "react-router-dom";
 import classnames from "classnames";
-import {Box, IconButton, Link} from '@material-ui/core'
-import Icon from '@mdi/react'
+import {Box, Link} from '@material-ui/core'
+// import Icon from '@mdi/react'
 
 
 

@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from 'react'
-import icons from './icons.css'
-import { Button, Grid, TextField } from "@material-ui/core";
+// import icons from './icons.css'
+import { Button,  TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles"; 
-import {collection, addDoc, query, onSnapshot, deleteDoc,doc} from "firebase/firestore";
+import {collection, addDoc, query, onSnapshot} from "firebase/firestore";
  import {db, storage} from "../../firebase";
- import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import Maps from '../maps/Maps';
+ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+// import Maps from '../maps/Maps';
 import { KeyboardArrowRight } from '@material-ui/icons';
 import { CircularProgress } from "@material-ui/core";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // const firestore = getFirestore(firebaseApp);
 
@@ -22,13 +24,16 @@ import { CircularProgress } from "@material-ui/core";
 
 // var imgUrlFb ="course-1.jpg"
 function Icons() {
+  const notify = () => toast("Done");
+
+
   var [isLoading, setIsLoading] = useState(false);
-const [description, setDescription] = useState("Description")
-const [title, setTitle] = useState("Title")
-const [cost, setCost] = useState("$")
-const [overview, setOverview] = useState("Overview")
+const [description] = useState("Description")
+// const [title, setTitle] = useState("Title")
+// const [cost, setCost] = useState("$")
+// const [overview, setOverview] = useState("Overview")
 const [curriculum, setCurriculum] = useState("Curriculum")
-const [author, setAuthor] = useState("Author(s)")
+// const [author, setAuthor] = useState("Author(s)")
 const [category, setCategory] = useState("Category")
 const [learningOutcome, setLearningOutcome] = useState("Learning Outcome")
 const [courseFeature, setCourseFeature] = useState("Feature")
@@ -43,7 +48,7 @@ const [priceFb, setPriceFb] = useState("")
 const[save,setSave]=useState("")
 
 const [displayImage, setDisplayImage] = React.useState([]);
-    const [previewImage, setPreviewImage] = React.useState('');
+    // const [previewImage, setPreviewImage] = React.useState('');
     const handleInputChange = (e) =>{
     // document.getElementsByClassName("Buttom").stlye.display ="block";
     document.getElementById("Buttom").style.display= "block";
@@ -51,8 +56,7 @@ const [displayImage, setDisplayImage] = React.useState([]);
              return setDisplayImage([...e.target.files]);
          
     }
-    const upload = ()=>{
-       const file = displayImage;
+    
       //  const imagesRef = ref(storage, 'images');
 //       const storageRef =app.storage().ref();
 //       const fileRef = storageRef.child(file.name)
@@ -60,7 +64,7 @@ const [displayImage, setDisplayImage] = React.useState([]);
 // console.log("uploaded");
 //       })
     
-     }
+     
 //      const [displayImage, setDisplayImage] = React.useState([]);
 //     const [previewImage, setPreviewImage] = React.useState('');
 //     const handleInputChange = (event) =>{
@@ -77,7 +81,7 @@ const [displayImage, setDisplayImage] = React.useState([]);
     
 //      }
 const d= new Date().toISOString().slice(0, 10);
-const writeUserData= async (date, authorCoursesFb,authorImg,authorName,courseDesc,courseLink,courseTitle,imgUrl,price,categoryFb,learningOutcomeFb, curriculumFb,  courseFeatureFb, descriptionFb) =>{
+const writeUserData= async () =>{
   await addDoc (collection (db, "courses6/" ), {
     date: `${d}`,
     authorCoursesFb: `${authorCourses}`,
@@ -98,7 +102,7 @@ const writeUserData= async (date, authorCoursesFb,authorImg,authorName,courseDes
     descriptionFb:`${description}`,
    
   });
-alert("done"); 
+ notify();
 document.getElementById("Buttom").style.display= "none";
   }
 
@@ -118,7 +122,7 @@ document.getElementById("Buttom").style.display= "none";
    }
  }, []); console.log(data);
 
- const [image , setImage] = useState('');
+ const [image ] = useState('');
 
  const useStyles =makeStyles({
    field: {marginTop:20,
@@ -142,9 +146,9 @@ async function fileHandler (e) {
   t = await getDownloadURL (fileRef);
   // handleInputChange();
   setSave(t);   setIsLoading(false);
- console.log(t);
+ 
 }
-console.log("after funcio ",save);
+
 
 
 
@@ -156,6 +160,20 @@ console.log("after funcio ",save);
   return(
 
    <div className="course_input">
+     <div>
+       
+        <ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+/>
+      </div>
            <div className="course_input_top">
                 
                       <TextField
